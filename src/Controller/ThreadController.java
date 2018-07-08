@@ -73,7 +73,7 @@ public class ThreadController {
                 }
             }
 
-            if (userInput[COMMAND_INDEX].equals(exit)) {
+            if (command.equals(exit)) {
                 stopAllRunningThreads();
                 isAppEnd = true;
             }
