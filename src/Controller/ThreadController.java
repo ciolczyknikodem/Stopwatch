@@ -93,13 +93,6 @@ public class ThreadController {
         }
     }
 
-    private void stopAllRunningThreads() {
-        for (Stopwatch element : container) {
-            deleteThreadFromContainer(element.getName());
-            element.interrupt();
-        }
-    }
-
     private Stopwatch findThread(String name) {
         for (Stopwatch element : container) {
             if (element.getName().equals(name)) {
@@ -119,6 +112,17 @@ public class ThreadController {
                 iterator.remove();
             }
         }
+    }
+
+    private void stopAllRunningThreads() {
+        Iterator<Stopwatch> iterator = container.iterator();
+
+        while(iterator.hasNext()) {
+            Stopwatch element = iterator.next();
+
+            element.interrupt();
+            iterator.remove();
+            }
     }
 }
 
