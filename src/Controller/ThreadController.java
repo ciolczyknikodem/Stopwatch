@@ -47,7 +47,7 @@ public class ThreadController {
 
             if (command.equals("pause")) {
                 if (userInput.length > 1) {
-                    pauseStopwatchThread(userInput);
+                    pauseStopwatchThread(threadName);
 
                 }
             }
@@ -80,8 +80,8 @@ public class ThreadController {
         stopwatch.start();
     }
 
-    private void pauseStopwatchThread(String[] commands) {
-        Stopwatch thread = findThread(commands[THREAD_NAME_INDEX]);
+    private void pauseStopwatchThread(String name) {
+        Stopwatch thread = findThread(name);
 
         if (thread != null) {
             if (!thread.isPause()) {
@@ -125,7 +125,7 @@ public class ThreadController {
 
             element.interrupt();
             iterator.remove();
-            }
+        }
     }
 }
 
