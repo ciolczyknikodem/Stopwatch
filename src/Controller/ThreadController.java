@@ -11,7 +11,7 @@ import java.util.List;
 public class ThreadController {
     private static final int THREAD_NAME_INDEX = 1;
     private static final int COMMAND_INDEX = 0;
-    
+
     private static final String start = "start";
     private static final String check = "check";
     private static final String pause = "pause";
@@ -64,14 +64,12 @@ public class ThreadController {
                 }
             }
 
-            if (command.equals(stop)) {
-                if (userInput.length > 1) {
-                    Stopwatch currentThread = findThread(userInput[THREAD_NAME_INDEX]);
+            if (command.equals(stop) && threadName != null) {
+                Stopwatch currentThread = findThread(threadName);
 
-                    if (currentThread != null) {
-                        deleteThreadFromContainer(userInput[THREAD_NAME_INDEX]);
-                        currentThread.interrupt();
-                    }
+                if (currentThread != null) {
+                    deleteThreadFromContainer(threadName);
+                    currentThread.interrupt();
                 }
             }
 
