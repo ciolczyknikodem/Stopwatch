@@ -50,7 +50,12 @@ public class ThreadController {
             }
 
             if (command.equals("pause") && threadName != null) {
-                pauseStopwatchThread(threadName);
+                try {
+                    pauseStopwatchThread(threadName);
+                }
+                catch (IllegalArgumentException e) {
+                    System.err.println(e.getMessage());
+                }
             }
 
             if (command.equals("stop")) {
