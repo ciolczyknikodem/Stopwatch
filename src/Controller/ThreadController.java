@@ -61,6 +61,7 @@ public class ThreadController {
             }
 
             if (commands[COMMAND_INDEX].equals("exit")) {
+                stopAllRunningThreads();
                 isAppEnd = true;
             }
         }
@@ -89,6 +90,13 @@ public class ThreadController {
         }
         else {
             throw new IllegalArgumentException("There is no thread of this name!");
+        }
+    }
+
+    private void stopAllRunningThreads() {
+        for (Stopwatch element : container) {
+            deleteThreadFromContainer(element.getName());
+            element.interrupt();
         }
     }
 
