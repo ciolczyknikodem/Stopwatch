@@ -29,11 +29,14 @@ public class ThreadController {
             view.displayCommandQuestion();
             String[] userInput = input.takeInputFromUser().split("\\W");
 
-            if (userInput[COMMAND_INDEX].equals("start") && userInput.length > 1) {
+            String command = userInput[COMMAND_INDEX];
+            String threadName = userInput[THREAD_NAME_INDEX];
+
+            if (command.equals("start") && userInput.length > 1) {
                 initializeNewStopwatch(userInput);
             }
 
-            if (userInput[COMMAND_INDEX].equals("check")) {
+            if (command.equals("check")) {
                 if (userInput.length < 2) {
                     view.displayThreadsInfo(container);
                 }
@@ -42,14 +45,14 @@ public class ThreadController {
                 }
             }
 
-            if (userInput[COMMAND_INDEX].equals("pause")) {
+            if (command.equals("pause")) {
                 if (userInput.length > 1) {
                     pauseStopwatchThread(userInput);
 
                 }
             }
 
-            if (userInput[COMMAND_INDEX].equals("stop")) {
+            if (command.equals("stop")) {
                 if (userInput.length > 1) {
                     Stopwatch currentThread = findThread(userInput[THREAD_NAME_INDEX]);
 
