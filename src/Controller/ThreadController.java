@@ -27,40 +27,40 @@ public class ThreadController {
 
         while (!isAppEnd) {
             view.displayCommandQuestion();
-            String[] commands = input.takeInputFromUser().split("\\W");
+            String[] userInput = input.takeInputFromUser().split("\\W");
 
-            if (commands[COMMAND_INDEX].equals("start") && commands.length > 1) {
-                initializeNewStopwatch(commands);
+            if (userInput[COMMAND_INDEX].equals("start") && userInput.length > 1) {
+                initializeNewStopwatch(userInput);
             }
 
-            if (commands[COMMAND_INDEX].equals("check")) {
-                if (commands.length < 2) {
+            if (userInput[COMMAND_INDEX].equals("check")) {
+                if (userInput.length < 2) {
                     view.displayThreadsInfo(container);
                 }
                 else {
-                    view.displayThreadsInfo(commands[THREAD_NAME_INDEX], container);
+                    view.displayThreadsInfo(userInput[THREAD_NAME_INDEX], container);
                 }
             }
 
-            if (commands[COMMAND_INDEX].equals("pause")) {
-                if (commands.length > 1) {
-                    pauseStopwatchThread(commands);
+            if (userInput[COMMAND_INDEX].equals("pause")) {
+                if (userInput.length > 1) {
+                    pauseStopwatchThread(userInput);
 
                 }
             }
 
-            if (commands[COMMAND_INDEX].equals("stop")) {
-                if (commands.length > 1) {
-                    Stopwatch currentThread = findThread(commands[THREAD_NAME_INDEX]);
+            if (userInput[COMMAND_INDEX].equals("stop")) {
+                if (userInput.length > 1) {
+                    Stopwatch currentThread = findThread(userInput[THREAD_NAME_INDEX]);
 
                     if (currentThread != null) {
-                        deleteThreadFromContainer(commands[THREAD_NAME_INDEX]);
+                        deleteThreadFromContainer(userInput[THREAD_NAME_INDEX]);
                         currentThread.interrupt();
                     }
                 }
             }
 
-            if (commands[COMMAND_INDEX].equals("exit")) {
+            if (userInput[COMMAND_INDEX].equals("exit")) {
                 stopAllRunningThreads();
                 isAppEnd = true;
             }
