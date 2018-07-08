@@ -30,26 +30,27 @@ public class ThreadController {
             String[] userInput = input.takeInputFromUser().split("\\W");
 
             String command = userInput[COMMAND_INDEX];
-            String threadName = userInput[THREAD_NAME_INDEX];
+            String threadName = null;
 
-            if (command.equals("start") && userInput.length > 1) {
-                initializeNewStopwatch(userInput);
+            if (userInput.length > 1) {
+                threadName = userInput[THREAD_NAME_INDEX];
+            }
+
+            if (command.equals("start") && threadName != null) {
+                initializeNewStopwatch(threadName);
             }
 
             if (command.equals("check")) {
-                if (userInput.length < 2) {
+                if (threadName == null) {
                     view.displayThreadsInfo(container);
                 }
                 else {
-                    view.displayThreadsInfo(userInput[THREAD_NAME_INDEX], container);
+                    view.displayThreadsInfo(threadName, container);
                 }
             }
 
-            if (command.equals("pause")) {
-                if (userInput.length > 1) {
-                    pauseStopwatchThread(threadName);
-
-                }
+            if (command.equals("pause") && threadName != null) {
+                pauseStopwatchThread(threadName);
             }
 
             if (command.equals("stop")) {
@@ -70,13 +71,11 @@ public class ThreadController {
         }
     }
 
-    private void initializeNewStopwatch(String[] commands) {
-        String threadName = commands[THREAD_NAME_INDEX];
+    private void initializeNewStopwatch(String threadName) {
         Stopwatch stopwatch = new Stopwatch();
-
         stopwatch.setName(threadName);
-        container.add(stopwatch);
 
+        container.add(stopwatch);
         stopwatch.start();
     }
 
