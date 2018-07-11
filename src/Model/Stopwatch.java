@@ -5,7 +5,7 @@ public class Stopwatch extends Thread {
     private Long startingTime;
     private int sleepDuration;
 
-    private int duration;
+    private int durationTillPause;
     private int durationTime;
 
     private boolean isPause;
@@ -37,7 +37,7 @@ public class Stopwatch extends Thread {
 
     private void calculateDuration() {
         long endTime = System.nanoTime();
-        duration = (int)((double)(endTime - startingTime) / 1000000000.0);
+        durationTillPause = (int)((double)(endTime - startingTime) / 1000000000.0);
     }
 
     public void setPause() {
@@ -45,11 +45,11 @@ public class Stopwatch extends Thread {
     }
 
     public void setUnPause() {
-        durationTime += duration;
+        durationTime += durationTillPause;
         isPause = false;
     }
     public int getDuration() {
-        return durationTime + duration;
+        return durationTime + durationTillPause;
     }
 
     public boolean isPause() { return isPause; }
