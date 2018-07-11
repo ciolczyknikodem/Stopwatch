@@ -12,7 +12,7 @@ public class Stopwatch extends Thread {
 
     public Stopwatch() {
         this.isPause = false;
-        this.sleepDuration = 1500;
+        this.sleepDuration = 1000;
     }
 
     public void run() {
@@ -43,8 +43,9 @@ public class Stopwatch extends Thread {
     public void setPause() {
         isPause = true;
     }
+
     public void setUnPause() {
-        durationTime = duration;
+        durationTime += duration;
         isPause = false;
     }
     public int getDuration() {
