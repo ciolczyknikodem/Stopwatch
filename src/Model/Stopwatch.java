@@ -44,13 +44,16 @@ public class Stopwatch extends Thread {
         isPause = true;
     }
 
-    public void setUnPause() {
+    public void setUnpause() {
         durationTime += durationTillPause;
         isPause = false;
     }
+    
     public int getDuration() {
         return durationTime + durationTillPause;
     }
 
-    public boolean isPause() { return isPause; }
+    public boolean isPause() { 
+        return isPause;
+    }
 }
